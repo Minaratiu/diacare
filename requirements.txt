@@ -1,0 +1,29 @@
+
+# Data processing
+pandas
+numpy
+scikit-learn
+
+# Deep Learning
+torch
+
+# Visualization
+matplotlib
+seaborn
+
+# Web application
+streamlit
+
+# Neo4j and RAG
+neo4j
+sentence-transformers
+langchain
+langchain-community
+langgraph
+
+# LLM and environment
+google-genai
+python-dotenv
+
+# Testing
+pytest

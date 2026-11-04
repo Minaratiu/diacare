@@ -1,0 +1,5 @@
+Only provided data used? Yes.
+    *   No self-diagnosis? Yes.
+    *   No calling MLP score "probability"? Yes.
+    *   Reference only? Yes.
+    *   IG explanations accurate (baseline comparison, non-causal, not
