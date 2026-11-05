@@ -24,7 +24,12 @@ class CoordinatorAgent:
             self.knowledge_agent = KnowledgeAgent()
         return self.knowledge_agent
 
-    def process(self, question=None, health_data=None):
+    def process(
+        self,
+        question=None,
+        health_data=None,
+        conversation_history=None,
+    ):
         """
         question: câu hỏi y khoa, có thể bỏ trống.
         health_data: dictionary gồm 8 thuộc tính, có thể bỏ trống.
@@ -57,6 +62,7 @@ class CoordinatorAgent:
                 return {
                     "success": False,
                     "state": state,
+                    "error_type": "invalid_input",
                     "message": message
                 }
 
@@ -97,9 +103,14 @@ class CoordinatorAgent:
 
         # Luồng tra cứu kiến thức
         if action in ["A2", "A3"] and has_question:
-            results["knowledge"] = self._get_knowledge_agent().answer(
-                question
-            )
+            knowledge_agent = self._get_knowledge_agent()
+            if conversation_history is None:
+                results["knowledge"] = knowledge_agent.answer(question)
+            else:
+                results["knowledge"] = knowledge_agent.answer(
+                    question,
+                    conversation_history=conversation_history,
+                )
 
         # Kiểm tra kết quả điều phối
         if has_health_data and results["prediction"] is None:

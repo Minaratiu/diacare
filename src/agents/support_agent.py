@@ -140,28 +140,51 @@ class SupportAgent:
             )
             return sections
 
+        answer = knowledge.get("answer")
+        if answer:
+            sections.append("\nCÂU TRẢ LỜI")
+            sections.append(answer)
+
         results = knowledge.get("results", [])
+        sources = knowledge.get("sources") or results
 
-        if not results:
+        if not answer and results:
+            sections.append("\nTÀI LIỆU LIÊN QUAN")
+            for index, item in enumerate(results, start=1):
+                sections.append(
+                    f"\nTài liệu {index}: {item.get('content', '')}"
+                )
+        elif not answer and not sources:
             sections.append(
-                "Chưa tìm thấy tài liệu đủ liên quan để trả lời."
+                knowledge.get(
+                    "message",
+                    "Chưa tìm thấy tài liệu đủ liên quan để trả lời.",
+                )
             )
-            return sections
-
-        for index, item in enumerate(results, start=1):
-            sections.append(
-                f"\nTài liệu {index}: {item.get('content', '')}"
-            )
-
-        sources = knowledge.get("sources", [])
 
         if sources:
             sections.append("\nNGUỒN THAM KHẢO")
 
-            for source in sources:
+            for index, source in enumerate(sources, start=1):
+                title = (
+                    source.get("title")
+                    or source.get("name")
+                    or source.get("source_name")
+                    or f"Tài liệu {index}"
+                )
+                citation_ids = source.get("citation_ids") or [index]
+                citation_label = ", ".join(
+                    str(citation_id) for citation_id in citation_ids
+                )
+                organization = source.get("organization")
+                label = f"[{citation_label}] {title}"
+                if organization:
+                    label += f" ({organization})"
+                url = source.get("url") or source.get("source_url")
+                if url:
+                    label += f": {url}"
                 sections.append(
-                    f"- {source.get('name', 'Nguồn tài liệu')}: "
-                    f"{source.get('url', '')}"
+                    f"- {label}"
                 )
 
         return sections
