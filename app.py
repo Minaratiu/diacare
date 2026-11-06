@@ -35,22 +35,18 @@ st.markdown("""
     }
 
     .stApp {
-        background:
-            linear-gradient(
-                135deg,
-                rgba(231, 241, 255, 0.72) 0%,
-                rgba(248, 250, 253, 0.96) 48%,
-                rgba(235, 243, 253, 0.72) 100%
-            ),
-            #f6f8fb;
-        background-attachment: fixed;
+        background: #ffffff;
         color: var(--diacare-ink);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system,
             BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
+    [data-testid="stMain"] {
+        background: #ffffff;
+    }
+
     [data-testid="stHeader"] {
-        background: transparent;
+        background: #ffffff;
     }
 
     [data-testid="stMainBlockContainer"] {
@@ -61,12 +57,26 @@ st.markdown("""
     section[data-testid="stSidebar"] {
         width: 238px !important;
         min-width: 238px !important;
-        background: var(--diacare-surface);
-        border-right: 1px solid var(--diacare-border);
+        background: #1769e0;
+        border-right: 1px solid #155dc8;
+        color: #ffffff;
+    }
+
+    section[data-testid="stSidebar"] [data-testid="stSidebarContent"] {
+        background: #1769e0;
+        color: #ffffff;
     }
 
     [data-testid="stSidebar"] > div:first-child {
         padding: 1rem 0.8rem 1.1rem;
+    }
+
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+    [data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
+        color: rgba(255, 255, 255, 0.88);
     }
 
     .diacare-brand {
@@ -82,13 +92,13 @@ st.markdown("""
         height: 34px;
         place-items: center;
         border-radius: 10px;
-        color: #fff;
-        background: var(--diacare-blue);
+        color: #1769e0;
+        background: #ffffff;
         font-size: 18px;
     }
 
     .diacare-brand-name {
-        color: var(--diacare-ink);
+        color: #ffffff;
         font-size: 17px;
         font-weight: 720;
         letter-spacing: -0.035em;
@@ -97,7 +107,7 @@ st.markdown("""
 
     .diacare-brand-caption {
         margin-top: 3px;
-        color: var(--diacare-muted);
+        color: rgba(255, 255, 255, 0.7);
         font-size: 9px;
         letter-spacing: 0.06em;
     }
@@ -157,45 +167,72 @@ st.markdown("""
         letter-spacing: -0.025em;
     }
 
-    [data-testid="stSidebar"] [data-testid="stRadio"] > label {
-        color: #74839a;
-        font-size: 10px;
-        font-weight: 750;
-        letter-spacing: 0.11em;
-        margin: 0 0 0.35rem 0.4rem;
-        text-transform: uppercase;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] {
-        gap: 0.15rem;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] label {
-        min-height: 38px;
-        padding: 0.3rem 0.55rem;
+    [data-testid="stSidebar"] [data-testid="stButton"] > button {
+        width: 100%;
+        justify-content: flex-start;
+        min-height: 39px;
+        padding: 0.35rem 0.65rem;
         border: 1px solid transparent;
-        border-radius: 8px;
-        color: #52647a;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: left;
+        box-shadow: none;
     }
 
-    [data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] label:hover {
-        background: #f3f7fc;
-        color: var(--diacare-blue-dark);
+    [data-testid="stSidebar"] [data-testid="stButton"] > button > div {
+        width: 100%;
+        justify-content: flex-start;
     }
 
-    [data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) {
-        background: var(--diacare-blue-soft);
-        border-color: #d7e8ff;
+    [data-testid="stSidebar"] [data-testid="stButton"] > button p {
+        width: 100%;
+        margin: 0;
+        color: inherit;
+        text-align: left;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stButton"] > button:hover {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"] {
+        border-color: #ffffff;
+        background: #ffffff;
         color: var(--diacare-blue-dark);
         font-weight: 680;
     }
 
-    [data-testid="stSidebar"] input[type="radio"] {
-        accent-color: var(--diacare-blue);
+    [data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"] p,
+    [data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"] span {
+        color: var(--diacare-blue-dark);
     }
 
-    [data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] label > div:first-child {
-        display: none;
+    [data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"]:hover {
+        border-color: #ffffff;
+        background: #f1f6ff;
+        color: var(--diacare-blue-dark);
+    }
+
+    [data-testid="stSidebar"] hr {
+        border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    [data-testid="stSidebar"] [data-testid="stExpander"] {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    [data-testid="stSidebar"] [data-testid="stExpander"] summary,
+    [data-testid="stSidebar"] [data-testid="stExpander"] summary span,
+    [data-testid="stSidebar"] [data-testid="stExpander"] svg {
+        color: #ffffff;
+        fill: #ffffff;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stExpander"] [data-testid="stMarkdownContainer"] p {
+        color: rgba(255, 255, 255, 0.85);
     }
 
     [data-testid="stButton"] > button,
@@ -856,24 +893,36 @@ with st.sidebar:
     st.divider()
 
     page_icons = {
-        "Tổng quan": "⌂  Tổng quan",
-        "Đánh giá nguy cơ": "◉  Đánh giá nguy cơ",
-        "Tra cứu tri thức": "⌕  Tra cứu tri thức",
-        "Hỗ trợ đa Agent": "✳  Hỗ trợ đa Agent",
+        "Tổng quan": "⌂   Tổng quan",
+        "Đánh giá nguy cơ": "◉   Đánh giá nguy cơ",
+        "Tra cứu tri thức": "⌕   Tra cứu tri thức",
+        "Hỗ trợ đa Agent": "✳   Hỗ trợ đa Agent",
     }
 
-    page = st.radio(
-        "CHỨC NĂNG",
-        [
-            "Tổng quan",
-            "Đánh giá nguy cơ",
-            "Tra cứu tri thức",
-            "Hỗ trợ đa Agent"
-        ],
-        index=0,
-        format_func=page_icons.get,
-        key="main_navigation",
+    st.markdown(
+        '<div class="diacare-brand-caption" '
+        'style="margin: 0 0 0.4rem 0.35rem; letter-spacing: 0.1em;">'
+        "CHỨC NĂNG</div>",
+        unsafe_allow_html=True,
     )
+    if "main_navigation" not in st.session_state:
+        st.session_state.main_navigation = "Tổng quan"
+
+    for page_name, label in page_icons.items():
+        st.button(
+            label,
+            key=f"navigation_{page_name}",
+            type=(
+                "primary"
+                if st.session_state.main_navigation == page_name
+                else "secondary"
+            ),
+            use_container_width=True,
+            on_click=_set_active_page,
+            args=(page_name,),
+        )
+
+    page = st.session_state.main_navigation
 
     st.divider()
 
@@ -886,24 +935,6 @@ with st.sidebar:
     st.divider()
 
     st.caption("DiaCare - Phiên bản 1.0")
-
-
-# =========================================================
-# 6. HEADER CHUNG
-# =========================================================
-
-st.markdown(
-    '<div class="main-title">DiaCare</div>',
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    '<div class="sub-title">'
-    'Hệ thống hỗ trợ đánh giá nguy cơ và tra cứu tri thức '
-    'bệnh tiểu đường ứng dụng trí tuệ nhân tạo'
-    '</div>',
-    unsafe_allow_html=True
-)
 
 
 # =========================================================
@@ -1245,14 +1276,6 @@ elif page == "Hỗ trợ đa Agent":
         "Nhập câu hỏi và/hoặc dữ liệu sức khỏe. "
         "Coordinator sẽ xác định trạng thái và điều phối luồng xử lý."
     )
-
-    st.markdown("""
-    **Các trạng thái xử lý:**
-
-    - S1: Chỉ đánh giá nguy cơ.
-    - S2: Chỉ tra cứu tri thức.
-    - S3: Kết hợp đánh giá nguy cơ và tra cứu tri thức.
-    """)
 
     with st.form("multi_agent_form"):
 
