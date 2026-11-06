@@ -6,6 +6,7 @@ scikit-learn
 
 # Deep Learning
 torch
+captum
 
 # Visualization
 matplotlib
